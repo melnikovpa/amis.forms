@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <declare-styleable name="CompositeRadioGroup">
+        <attr name="first_control_label" format="string" />
+        <attr name="second_control_label" format="string" />
+    </declare-styleable>
+</resources>
