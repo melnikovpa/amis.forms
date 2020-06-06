@@ -13,7 +13,7 @@ class Form constructor(validationContainer: ValidationContainer)
 {
     var container: ValidationContainer? = validationContainer
 
-    //private val fields = mutableListOf<GenericFormField>()
+    private val compositeFields = mutableListOf<CompositeInputElement>()
 
     fun compositeInput(
         view: CompositeInputLayout
@@ -23,9 +23,7 @@ class Form constructor(validationContainer: ValidationContainer)
             layout = view
         )
 
-//        val txtCompositeItemLabel = view.findViewById<TextView>(R.id.txtCompositeItemLabel)
-//
-//        txtCompositeItemLabel.text = "sadsadsadsadasd"
+        compositeFields.add(element = element)
 
         return element
     }
@@ -34,10 +32,18 @@ class Form constructor(validationContainer: ValidationContainer)
         view: View,
         onSubmit: () -> Unit
     ) = view.setOnClickListener {
+        validate()
         //val result = validate()
         //if (result.success()) {
         onSubmit()
         //}
+    }
+
+    private fun validate()
+    {
+        for (composite in compositeFields) {
+            composite.validate()
+        }
     }
 
     fun start(): Form {

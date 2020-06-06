@@ -1,4 +1,13 @@
 package com.amisforms.form.elements
 
-open class InputElement {
+import com.amisforms.form.asserts.BaseAssert
+
+open class InputElement
+{
+    protected val assertionsArray = mutableListOf<BaseAssert>()
+
+    fun pushAssertion(assert: BaseAssert)
+    {
+        assertionsArray.add(assert)
+    }
 }
