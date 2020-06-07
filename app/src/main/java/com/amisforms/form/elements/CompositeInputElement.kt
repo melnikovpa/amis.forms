@@ -9,18 +9,21 @@ import android.widget.TextView
 import com.amisforms.R
 import com.amisforms.elements.CompositeInputLayout
 import com.amisforms.form.asserts.BaseAssert
+import com.amisforms.form.validation.ValidationContainer
 
 class CompositeInputElement constructor(
-    layout: CompositeInputLayout
-): InputElement()
+    layout: CompositeInputLayout,
+    container: ValidationContainer
+): Element()
 {
+    private var _container: ValidationContainer = container
+    private var _layout: CompositeInputLayout = layout
+
     var label: TextView? = null
     var edit: EditText? = null
 
     var errorLayout: LinearLayout? = null
     var error: TextView? = null
-
-    private var hasError = false
 
     init {
         this.label = layout.findViewById(R.id.txtCompositeItemLabel)
@@ -32,20 +35,22 @@ class CompositeInputElement constructor(
         realTimeValidation()
     }
 
-    fun pushAssertion(assert: BaseAssert): CompositeInputElement
-    {
-        assertionsArray.add(assert)
-        return this
-    }
+//    fun pushAssertion(assert: BaseAssert): CompositeInputElement
+//    {
+//        assertionsArray.add(assert)
+//        return this
+//    }
 
-    fun validate()
+    override fun validate()
     {
-        hasError = false
+        super.validate()
 
         for (assert in assertionsArray) {
             if (hasError) {
                 break
             }
+
+            assert.setContainer(container = _container)
 
             val result: Boolean = assert.check(this.edit!!)
 
@@ -78,6 +83,13 @@ class CompositeInputElement constructor(
             }
 
             override fun onTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
+
+                if (_layout.clearValidationWhenEmpty && edit!!.text.isEmpty()) {
+                    hasError = false
+                    checkHasError()
+                    return
+                }
+
                 validate()
             }
         })

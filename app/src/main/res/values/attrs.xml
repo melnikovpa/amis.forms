@@ -7,7 +7,7 @@
 
     <declare-styleable name="CompositeInputLayout">
         <attr name="orientation" format="string" />
-        <attr name="clearValidationWhenEmpty" format="string" />
+        <attr name="clearValidationWhenEmpty" format="boolean" />
         <attr name="label" format="string" />
         <attr name="hint" format="string" />
         <attr name="inputType" format="string" />

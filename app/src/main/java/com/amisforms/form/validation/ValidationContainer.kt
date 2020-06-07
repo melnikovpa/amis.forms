@@ -9,6 +9,11 @@ abstract class ValidationContainer(private val context: Context) {
 
     abstract fun <T : View> findViewById(@IdRes id: Int): T?
 
+    internal fun getContext() : Context
+    {
+        return this.context
+    }
+
     internal fun getString(@StringRes res: Int?): String? {
         return if (res == null) {
             null

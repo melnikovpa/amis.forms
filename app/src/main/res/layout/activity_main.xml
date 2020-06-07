@@ -28,7 +28,22 @@
         android:id="@+id/compositeInputH"
         android:layout_width="match_parent"
         android:layout_height="88dp"
-        app:orientation="horizontal"/>
+        app:orientation="horizontal"
+        app:clearValidationWhenEmpty="true"/>
+
+    <TextView
+        android:id="@+id/textView2"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="TextView" />
+
+    <EditText
+        android:id="@+id/editText"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:inputType="textPersonName"
+        android:text="Name" />
 
     <Switch
         android:id="@+id/switchElement"
