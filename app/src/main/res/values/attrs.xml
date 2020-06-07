@@ -7,6 +7,11 @@
 
     <declare-styleable name="CompositeInputLayout">
         <attr name="orientation" format="string" />
+        <attr name="clearValidationWhenEmpty" format="string" />
+        <attr name="label" format="string" />
+        <attr name="hint" format="string" />
+        <attr name="inputType" format="string" />
+        <attr name="needRightButton" format="boolean" />
     </declare-styleable>
 
 </resources>
