@@ -21,7 +21,21 @@
     <com.amisforms.elements.CompositeInputLayout
         android:id="@+id/compositeInput"
         android:layout_width="match_parent"
-        android:layout_height="88dp" />
+        android:layout_height="88dp"
+        app:orientation="vertical"/>
+
+    <com.amisforms.elements.CompositeInputLayout
+        android:id="@+id/compositeInputH"
+        android:layout_width="match_parent"
+        android:layout_height="88dp"
+        app:orientation="horizontal"/>
+
+    <Switch
+        android:id="@+id/switchElement"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:text="Switch" />
 
     <Button
         android:id="@+id/btnSubmit"

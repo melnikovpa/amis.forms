@@ -26,6 +26,13 @@
         android:layout_weight="1"
         android:orientation="horizontal">
 
+        <TextView
+            android:id="@+id/textView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="TextView" />
+
         <EditText
             android:id="@+id/edtCompositeEditText"
             android:layout_width="match_parent"

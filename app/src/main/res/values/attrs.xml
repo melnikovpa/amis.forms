@@ -4,4 +4,9 @@
         <attr name="first_control_label" format="string" />
         <attr name="second_control_label" format="string" />
     </declare-styleable>
+
+    <declare-styleable name="CompositeInputLayout">
+        <attr name="orientation" format="string" />
+    </declare-styleable>
+
 </resources>

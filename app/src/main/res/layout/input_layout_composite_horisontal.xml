@@ -8,29 +8,30 @@
     android:id="@+id/root">
 
 
-    <TextView
-        android:id="@+id/txtCompositeItemLabel"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_weight="1"
-        android:textColor="@color/labelColor"
-        android:text="Какой то лейбл"
-        android:fontFamily="@font/roboto"
-        android:textSize="12sp"
-        android:paddingStart="5dp"
-        android:paddingEnd="2dp"/>
-
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_weight="1"
-        android:orientation="horizontal">
+        android:orientation="horizontal"
+        android:weightSum="1">
+
+        <TextView
+            android:id="@+id/txtCompositeItemLabel"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="0.4"
+            android:fontFamily="@font/roboto"
+            android:paddingStart="5dp"
+            android:paddingEnd="5dp"
+            android:text="Какой то лейбл"
+            android:textColor="@color/labelColor"
+            android:textSize="12sp" />
 
         <EditText
             android:id="@+id/edtCompositeEditText"
-            android:layout_width="match_parent"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_weight="1"
+            android:layout_weight="0.6"
             android:ems="10"
             android:fontFamily="@font/roboto"
             android:inputType="textPersonName"

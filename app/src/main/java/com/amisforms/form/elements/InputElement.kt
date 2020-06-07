@@ -6,8 +6,4 @@ open class InputElement
 {
     protected val assertionsArray = mutableListOf<BaseAssert>()
 
-    fun pushAssertion(assert: BaseAssert)
-    {
-        assertionsArray.add(assert)
-    }
 }

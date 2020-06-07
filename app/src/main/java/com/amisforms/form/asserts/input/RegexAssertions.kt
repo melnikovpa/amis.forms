@@ -3,16 +3,20 @@ package com.amisforms.form.asserts.input
 import android.widget.EditText
 import com.amisforms.form.asserts.BaseAssert
 
-class NotEmptyAssertions(
-    errorMessage: String
-) : BaseAssert()
+class RegexAssertions(
+    errorMessage: String,
+    regexValue: String
+): BaseAssert()
 {
+    private var _regexValue: String = ""
+
     init {
         this.setErrorMessage(errorMessage)
+        _regexValue = regexValue
     }
 
     override fun check(input: EditText): Boolean
     {
-        return !input.text.isBlank()
+        return _regexValue.toRegex().matches(input.text)
     }
 }
