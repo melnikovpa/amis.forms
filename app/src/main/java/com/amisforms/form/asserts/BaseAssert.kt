@@ -24,12 +24,12 @@ open class BaseAssert
         this.errorMessage = error
     }
 
-    open fun check(input: EditText): Boolean
+    open fun invalid(input: EditText): Boolean
     {
         return true
     }
 
-    open fun check(input: CompoundButton): Boolean
+    open fun invalid(input: CompoundButton): Boolean
     {
         return !input.isChecked
     }

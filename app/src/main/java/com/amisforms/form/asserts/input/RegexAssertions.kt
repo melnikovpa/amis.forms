@@ -15,8 +15,8 @@ class RegexAssertions(
         _regexValue = regexValue
     }
 
-    override fun check(input: EditText): Boolean
+    override fun invalid(input: EditText): Boolean
     {
-        return _regexValue.toRegex().matches(input.text)
+        return !_regexValue.toRegex().matches(input.text)
     }
 }

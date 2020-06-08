@@ -20,52 +20,47 @@ class CompositeInputElement constructor(
     private var _layout: CompositeInputLayout = layout
 
     var label: TextView? = null
-    var edit: EditText? = null
+    var edit: InputElement? = null
 
     var errorLayout: LinearLayout? = null
     var error: TextView? = null
 
     init {
         this.label = layout.findViewById(R.id.txtCompositeItemLabel)
-        this.edit  = layout.findViewById(R.id.edtCompositeEditText)
         this.errorLayout = layout.findViewById(R.id.llCompositeItemError)
         this.error = layout.findViewById(R.id.txtCompositeItemError)
 
+        val editText: EditText = layout.findViewById(R.id.edtCompositeEditText)
+        this.edit = InputElement(
+            editText, container,
+            errorOnInput = false,
+            clearValidationWhenEmpty = _layout.clearValidationWhenEmpty
+        )
+
         checkHasError()
-        realTimeValidation()
     }
 
-//    fun pushAssertion(assert: BaseAssert): CompositeInputElement
-//    {
-//        assertionsArray.add(assert)
-//        return this
-//    }
+    override fun pushAssertion(assert: BaseAssert): Element
+    {
+        this.edit!!.pushAssertion(assert)
+        return this
+    }
 
-    override fun validate()
+    override fun validate(): Boolean
     {
         super.validate()
-
-        for (assert in assertionsArray) {
-            if (hasError) {
-                break
-            }
-
-            assert.setContainer(container = _container)
-
-            val result: Boolean = assert.check(this.edit!!)
-
-            if(!result) {
-                this.error?.text = assert.getErrorMessage()
-                this.error?.setError("dasdasd", null)
-                errorLayout?.visibility = View.VISIBLE
-                hasError = true
-            }
+        hasError = this.edit!!.validate()
+        if(hasError) {
+            this.error?.text = this.edit!!.currentErrorMessage
+            errorLayout?.visibility = View.VISIBLE
+            hasError = true
         }
 
         checkHasError()
+        return hasError
     }
 
-    fun checkHasError()
+    override fun checkHasError()
     {
         if (!hasError) {
             error?.text = "";
@@ -73,25 +68,5 @@ class CompositeInputElement constructor(
         }
     }
 
-    fun realTimeValidation()
-    {
-        this.edit!!.addTextChangedListener(object : TextWatcher {
-            override fun afterTextChanged(p0: Editable?) {
-            }
 
-            override fun beforeTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
-            }
-
-            override fun onTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
-
-                if (_layout.clearValidationWhenEmpty && edit!!.text.isEmpty()) {
-                    hasError = false
-                    checkHasError()
-                    return
-                }
-
-                validate()
-            }
-        })
-    }
 }

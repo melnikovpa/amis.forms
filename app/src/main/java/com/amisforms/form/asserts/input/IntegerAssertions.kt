@@ -11,11 +11,11 @@ class IntegerAssertions(
         this.setErrorMessage(errorMessage)
     }
 
-    override fun check(input: EditText): Boolean
+    override fun invalid(input: EditText): Boolean
     {
         val str  = input.text.toString()
         val cast = str.toIntOrNull()
 
-        return cast != null
+        return cast == null
     }
 }

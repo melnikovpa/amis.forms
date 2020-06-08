@@ -3,6 +3,7 @@ package com.amisforms
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Button
+import android.widget.EditText
 import android.widget.Switch
 import android.widget.Toast
 import com.amisforms.elements.CompositeInputLayout
@@ -19,6 +20,7 @@ class MainActivity : AppCompatActivity() {
         val compositeInput: CompositeInputLayout = findViewById(R.id.compositeInput)
         val compositeInputH: CompositeInputLayout = findViewById(R.id.compositeInputH)
         val switchInput: Switch = findViewById(R.id.switchElement)
+        val editText: EditText = findViewById(R.id.editText)
 
         amisForm {
             compositeInput(compositeInput)
@@ -32,6 +34,10 @@ class MainActivity : AppCompatActivity() {
                     }
                 }.pushAssertion(CheckableAssertions("djsagdhgsahdgj"))
 
+                input(editText)
+                    .clearValidationWhenEmpty(true)
+                    .pushAssertion(NotEmptyAssertions("Внимание, данное поле не может быть пустым, это недопустимо"))
+                    .pushAssertion(LengthAssertions("Максимум 5 символов", maxLength = 5))
 
                 compositeInput(compositeInputH)
                     .pushAssertion(IntegerAssertions("Допустимы только числовые значения"))

@@ -11,8 +11,8 @@ class NotEmptyAssertions(
         this.setErrorMessage(errorMessage)
     }
 
-    override fun check(input: EditText): Boolean
+    override fun invalid(input: EditText): Boolean
     {
-        return !input.text.isBlank()
+        return input.text.isBlank()
     }
 }

@@ -18,7 +18,7 @@ class LengthAssertions(
         this._maxLength = maxLength
     }
 
-    override fun check(input: EditText): Boolean
+    override fun invalid(input: EditText): Boolean
     {
         // Проверка что текст входит в указанный диапазон
         if (
@@ -26,16 +26,16 @@ class LengthAssertions(
             (input.text.length < _minLength!! || input.text.length > _maxLength!! )
            )
         {
-            return false
+            return true
         } else if (_minLength != null && input.text.length < _minLength!!) {
             // Проверка только на минимальную длинну
-            return false
+            return true
         } else if (_maxLength != null && input.text.length > _maxLength!!) {
             // Проверка только на максимальную длинну
-            return false
+            return true
         }
 
-        return true
+        return false
     }
 
 }

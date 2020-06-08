@@ -7,13 +7,21 @@ open class Element
     protected val assertionsArray = mutableListOf<BaseAssert>()
     protected var hasError = false
 
-    open fun validate() {
+    var currentErrorMessage = ""
+
+    open fun validate(): Boolean {
         hasError = false
+        return hasError
     }
 
-    fun pushAssertion(assert: BaseAssert): Element
+    open fun pushAssertion(assert: BaseAssert): Element
     {
         assertionsArray.add(assert)
         return this
+    }
+
+    open fun checkHasError()
+    {
+        return
     }
 }

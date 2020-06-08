@@ -2,12 +2,14 @@ package com.amisforms.form
 
 import android.view.View
 import android.widget.CompoundButton
+import android.widget.EditText
 import android.widget.TextView
 import com.amisforms.R
 import com.amisforms.elements.CompositeInputLayout
 import com.amisforms.form.elements.CheckElement
 import com.amisforms.form.elements.CompositeInputElement
 import com.amisforms.form.elements.Element
+import com.amisforms.form.elements.InputElement
 import com.amisforms.form.validation.ValidationContainer
 
 typealias FormBuilder = Form.() -> Unit
@@ -18,9 +20,15 @@ class Form constructor(validationContainer: ValidationContainer)
 
     private val compositeFields = mutableListOf<Element>()
 
-    fun input()
+    fun input(view: EditText): InputElement
     {
+        val element = InputElement(
+            view = view,
+            container = container!!
+        )
 
+        compositeFields.add(element)
+        return element
     }
 
     fun checkable(

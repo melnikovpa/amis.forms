@@ -24,13 +24,8 @@ class CheckElement constructor(
         return this
     }
 
-//    fun pushAssertion(assert: BaseAssert): CheckElement
-//    {
-//        assertionsArray.add(assert)
-//        return this
-//    }
-
-    override fun validate() {
+    override fun validate() : Boolean
+    {
         super.validate()
 
         for (assert in assertionsArray) {
@@ -39,10 +34,9 @@ class CheckElement constructor(
             }
 
             assert.setContainer(container = _container)
-            val result: Boolean = assert.check(this.item!!)
-            if (!result) {
-                hasError = true
-            }
+            hasError = assert.invalid(this.item!!)
         }
+
+        return hasError
     }
 }

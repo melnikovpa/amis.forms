@@ -11,8 +11,8 @@ class CheckableAssertions(
         this.setErrorMessage(errorMessage)
     }
 
-    override fun check(input: CompoundButton): Boolean
+    override fun invalid(input: CompoundButton): Boolean
     {
-        return input.isChecked
+        return !input.isChecked
     }
 }
