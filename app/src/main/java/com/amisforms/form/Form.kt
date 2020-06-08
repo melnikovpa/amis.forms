@@ -18,6 +18,7 @@ class Form constructor(validationContainer: ValidationContainer)
 {
     var container: ValidationContainer? = validationContainer
 
+    private var formResult: FormResult? = null
     private val compositeFields = mutableListOf<Element>()
 
     fun input(view: EditText): InputElement
@@ -61,15 +62,18 @@ class Form constructor(validationContainer: ValidationContainer)
     ) = view.setOnClickListener {
         validate()
         //val result = validate()
-        //if (result.success()) {
-        onSubmit()
-        //}
+        if (formResult!!.success()) {
+            onSubmit()
+        }
     }
 
     private fun validate()
     {
+        formResult = FormResult()
         for (composite in compositeFields) {
-            composite.validate()
+            if (composite.valid()) {
+                formResult!!.putError(composite)
+            }
         }
     }
 

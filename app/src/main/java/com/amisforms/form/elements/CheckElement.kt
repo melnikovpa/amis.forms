@@ -16,6 +16,7 @@ class CheckElement constructor(
 
     init {
         item = view as CompoundButton
+        currentId = item!!.id
     }
 
     fun onCheckChange(onCheckChange: (buttonView: CompoundButton, isChecked: Boolean) -> Unit): CheckElement
@@ -24,9 +25,9 @@ class CheckElement constructor(
         return this
     }
 
-    override fun validate() : Boolean
+    override fun valid() : Boolean
     {
-        super.validate()
+        super.valid()
 
         for (assert in assertionsArray) {
             if (hasError) {

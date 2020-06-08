@@ -7,9 +7,10 @@ open class Element
     protected val assertionsArray = mutableListOf<BaseAssert>()
     protected var hasError = false
 
+    var currentId = 0
     var currentErrorMessage = ""
 
-    open fun validate(): Boolean {
+    open fun valid(): Boolean {
         hasError = false
         return hasError
     }

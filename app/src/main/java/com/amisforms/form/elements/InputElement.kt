@@ -22,6 +22,7 @@ class InputElement constructor(
 
     init {
         edit = view as EditText
+        currentId = edit!!.id
         realTimeValidation()
     }
 
@@ -31,9 +32,9 @@ class InputElement constructor(
         return this
     }
 
-    override fun validate(): Boolean
+    override fun valid(): Boolean
     {
-        super.validate()
+        super.valid()
 
         for (assert in assertionsArray) {
             if (hasError) {
@@ -79,7 +80,7 @@ class InputElement constructor(
                     return
                 }
 
-                validate()
+                valid()
             }
         })
     }

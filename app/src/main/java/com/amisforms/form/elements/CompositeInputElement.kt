@@ -19,16 +19,18 @@ class CompositeInputElement constructor(
     private var _container: ValidationContainer = container
     private var _layout: CompositeInputLayout = layout
 
-    var label: TextView? = null
-    var edit: InputElement? = null
+    private var label: TextView? = null
+    private var errorLayout: LinearLayout? = null
 
-    var errorLayout: LinearLayout? = null
+    var edit: InputElement? = null
     var error: TextView? = null
 
     init {
         this.label = layout.findViewById(R.id.txtCompositeItemLabel)
         this.errorLayout = layout.findViewById(R.id.llCompositeItemError)
         this.error = layout.findViewById(R.id.txtCompositeItemError)
+
+        currentId = _layout.id
 
         val editText: EditText = layout.findViewById(R.id.edtCompositeEditText)
         this.edit = InputElement(
@@ -46,10 +48,10 @@ class CompositeInputElement constructor(
         return this
     }
 
-    override fun validate(): Boolean
+    override fun valid(): Boolean
     {
-        super.validate()
-        hasError = this.edit!!.validate()
+        super.valid()
+        hasError = this.edit!!.valid()
         if(hasError) {
             this.error?.text = this.edit!!.currentErrorMessage
             errorLayout?.visibility = View.VISIBLE
